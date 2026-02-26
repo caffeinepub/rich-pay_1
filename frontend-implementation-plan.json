@@ -1,0 +1,36 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix Employee Add Bank Account Functionality",
+  "requirements": [
+    {
+      "id": "REQ-18",
+      "summary": "Fix the employee Add Bank Account submission to save accounts under the logged-in employee's identity with Pending status, appearing immediately in their accounts list",
+      "acceptanceCriteria": [
+        "A logged-in employee can fill out the Add Bank Account form (bank name, account holder name, account number, IFSC code, account type) and submit it successfully.",
+        "Upon submission, the new bank account is saved to localStorage associated with the employee's username/identity, not the admin's.",
+        "The newly submitted account appears in the employee's 'My Bank Accounts' list with a 'Pending' status badge immediately after submission.",
+        "The admin's 'All Bank Accounts' section also shows the employee-submitted account with the employee's name.",
+        "The Add Bank Account form is not accessible to or confused with the admin's 'My Accounts' form — each operates independently.",
+        "No error is thrown or silent failure occurs when an employee submits the form."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/employee/AddBankAccountPage.tsx",
+          "operation": "modify",
+          "description": "Replace the hardcoded admin employeeId with the logged-in employee's ID from the session. Ensure the addBankAccount mutation is called with the correct employee identity so localStorage persists the bank account under the employee's record, not the admin's. After successful submission, ensure the query cache is invalidated so the new account appears immediately in the employee's 'My Bank Accounts' list with a 'Pending' status."
+        },
+        {
+          "path": "frontend/src/lib/auth.ts",
+          "operation": "modify",
+          "description": "Review and if necessary fix the addBankAccount function to ensure it correctly associates the new bank account with the provided employeeId in localStorage, sets the status to 'Pending', and includes a submissionDate timestamp. Verify that the function does not mistakenly overwrite or reuse the admin's account key."
+        },
+        {
+          "path": "frontend/src/pages/employee/MyBankAccountsPage.tsx",
+          "operation": "modify",
+          "description": "Ensure the page correctly fetches and displays bank accounts for the logged-in employee by verifying the query key and filter logic. Confirm that newly added accounts appear immediately after the cache is invalidated, and that the 'Pending' status badge is rendered correctly."
+        }
+      ]
+    }
+  ]
+}

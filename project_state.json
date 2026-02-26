@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Full-stack business banking management app called Rich Pay with dark red theme. Features admin panel (hardcoded credentials Viper@123/Risktogain) with bank account approval workflow, employee management, per-employee private chat, and settings. Employee portal with invite-only registration (password: Moneytime123), bank account submissions with pending/approved/rejected status, 30% commission info section, and private admin chat. All data persisted in localStorage.",
+  "architectural_notes": [
+    "All data persisted in localStorage (no backend)",
+    "Auth via session token stored in localStorage supporting multi-device login simulation",
+    "Real-time chat simulated via localStorage polling every 1.5 seconds",
+    "Single hardcoded admin account; employees register via invite-only with password Moneytime123",
+    "Dark red theme: background #0d0000, primary #8B0000, accent #cc0000"
+  ],
+  "known_issues": [
+    "Employee 'Add Bank Account' form not working — only admin can currently add bank accounts"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-implement-a-landing-login-screen-that-is-the-app-entry-point-display-the-rich-pay-brand-name-prominently-at-the-top-provide-two-buttons-admin-login-and-employee-login-admin-login-opens-a-form-with-username-and-password-fields-employee-login-opens-a-form-with-username-and-password-fields-both-forms-authenticate-against-the-backend",
+      "title": "Implement a Landing / Login screen that is the app entry point. Display the 'Rich Pay' brand name prominently at the top. Provide two buttons: 'Admin Login' and 'Employee Login'. Admin Login opens a form with username and password fields. Employee Login opens a form with username and password fields. Both forms authenticate against the backend.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-employee-invite-only-registration-flow-the-registration-page-is-accessible-only-via-a-special-invite-link-containing-a-token-e-g-register-token-xyz-the-page-first-shows-a-registration-password-field-the-correct-password-is-moneytime123-if-correct-show-the-create-employee-account-form-with-fields-full-name-username-password-on-submission-create-the-employee-account-via-the-backend-employees-cannot-share-the-invite-link-from-within-the-app",
+      "title": "Implement employee invite-only registration flow. The registration page is accessible only via a special invite link containing a token (e.g., /register?token=XYZ). The page first shows a 'Registration Password' field; the correct password is 'Moneytime123'. If correct, show the Create Employee Account form with fields: Full Name, Username, Password. On submission, create the employee account via the backend. Employees cannot share the invite link from within the app.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-admin-dashboard-with-five-sections-accessible-via-a-sidebar-or-top-navigation-1-all-bank-accounts-2-employees-3-chats-4-settings-5-my-accounts-the-dashboard-should-show-the-admin-s-name-and-a-logout-button",
+      "title": "Build the Admin Dashboard with five sections accessible via a sidebar or top navigation: (1) All Bank Accounts, (2) Employees, (3) Chats, (4) Settings, (5) My Accounts. The dashboard should show the admin's name and a logout button.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-all-bank-accounts-section-in-the-admin-dashboard-display-a-table-list-of-all-bank-accounts-submitted-by-all-employees-showing-employee-name-bank-name-account-holder-name-account-number-ifsc-code-account-type-submission-date-and-status-badge-pending-yellow-approved-green-rejected-red-for-pending-accounts-show-approve-and-reject-action-buttons-admin-can-also-edit-any-account-s-details",
+      "title": "Implement the 'All Bank Accounts' section in the Admin Dashboard. Display a table/list of all bank accounts submitted by all employees, showing: employee name, bank name, account holder name, account number, IFSC code, account type, submission date, and status badge (Pending=yellow, Approved=green, Rejected=red). For pending accounts, show 'Approve' and 'Reject' action buttons. Admin can also edit any account's details.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-employees-section-in-the-admin-dashboard-display-a-list-of-all-registered-employees-showing-their-full-name-username-and-registration-date-admin-can-click-on-an-employee-to-edit-their-profile-full-name-username",
+      "title": "Implement the 'Employees' section in the Admin Dashboard. Display a list of all registered employees showing their full name, username, and registration date. Admin can click on an employee to edit their profile (full name, username).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-chats-section-in-the-admin-dashboard-show-a-list-of-all-employees-clicking-on-an-employee-opens-a-private-chat-window-showing-only-the-conversation-between-that-employee-and-the-admin-admin-can-send-messages-messages-from-both-sides-are-displayed-with-sender-label-message-text-and-timestamp-implement-polling-every-3-seconds-to-simulate-real-time-updates",
+      "title": "Implement the 'Chats' section in the Admin Dashboard. Show a list of all employees. Clicking on an employee opens a private chat window showing only the conversation between that employee and the admin. Admin can send messages. Messages from both sides are displayed with sender label, message text, and timestamp. Implement polling (every 3 seconds) to simulate real-time updates.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-settings-section-in-the-admin-dashboard-provide-a-form-for-the-admin-to-change-their-username-and-password-the-form-should-require-entering-the-current-password-for-confirmation-before-saving-updated-credentials-must-persist-in-the-backend",
+      "title": "Implement the 'Settings' section in the Admin Dashboard. Provide a form for the admin to change their username and password. The form should require entering the current password for confirmation before saving. Updated credentials must persist in the backend.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-my-accounts-section-in-the-admin-dashboard-admin-can-upload-their-own-bank-accounts-with-fields-bank-name-account-holder-name-account-number-ifsc-code-account-type-savings-current-display-a-list-of-admin-s-own-submitted-bank-accounts",
+      "title": "Implement the 'My Accounts' section in the Admin Dashboard. Admin can upload their own bank accounts with fields: bank name, account holder name, account number, IFSC code, account type (Savings/Current). Display a list of admin's own submitted bank accounts.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-invite-link-generation-in-the-admin-dashboard-add-a-generate-invite-link-button-accessible-from-the-employees-section-or-a-dedicated-area-clicking-it-calls-the-backend-to-generate-a-unique-token-and-displays-the-full-registration-url-e-g-https-app-domain-register-token-xyz-with-a-copy-to-clipboard-button-admin-can-generate-multiple-tokens",
+      "title": "Implement invite link generation in the Admin Dashboard. Add a 'Generate Invite Link' button (accessible from the Employees section or a dedicated area). Clicking it calls the backend to generate a unique token, and displays the full registration URL (e.g., https://[app-domain]/register?token=XYZ) with a copy-to-clipboard button. Admin can generate multiple tokens.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-employee-dashboard-with-five-sections-accessible-via-a-sidebar-or-bottom-navigation-1-my-bank-accounts-2-add-bank-account-3-commission-info-4-chat-with-admin-5-my-profile-show-the-employee-s-name-and-a-logout-button",
+      "title": "Build the Employee Dashboard with five sections accessible via a sidebar or bottom navigation: (1) My Bank Accounts, (2) Add Bank Account, (3) Commission Info, (4) Chat with Admin, (5) My Profile. Show the employee's name and a logout button.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-my-bank-accounts-and-add-bank-account-sections-for-employees-my-bank-accounts-shows-only-the-logged-in-employee-s-submitted-accounts-with-status-badges-pending-yellow-approved-green-rejected-red-bank-name-account-holder-name-account-number-ifsc-code-and-account-type-add-bank-account-is-a-form-with-fields-bank-name-account-holder-name-account-number-ifsc-code-account-type-savings-current-after-submission-the-account-appears-as-pending-approval-in-the-list",
+      "title": "Implement 'My Bank Accounts' and 'Add Bank Account' sections for employees. 'My Bank Accounts' shows only the logged-in employee's submitted accounts with status badges (Pending=yellow, Approved=green, Rejected=red), bank name, account holder name, account number, IFSC code, and account type. 'Add Bank Account' is a form with fields: bank name, account holder name, account number, IFSC code, account type (Savings/Current). After submission, the account appears as 'Pending Approval' in the list.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-commission-info-section-in-the-employee-dashboard-display-prominently-30-commission-on-all-savings-accounts-as-a-headline-with-a-paragraph-explaining-what-this-means-e-g-employees-earn-a-30-commission-on-savings-accounts-they-submit-that-get-approved",
+      "title": "Implement the 'Commission Info' section in the Employee Dashboard. Display prominently: '30% Commission on all Savings Accounts' as a headline, with a paragraph explaining what this means (e.g., employees earn a 30% commission on savings accounts they submit that get approved).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-chat-with-admin-section-for-employees-show-the-private-chat-thread-between-this-employee-and-the-admin-only-employee-can-type-and-send-messages-messages-from-both-sides-are-shown-with-sender-label-message-text-and-timestamp-implement-polling-every-3-seconds-to-show-new-messages-from-admin-in-near-real-time",
+      "title": "Implement 'Chat with Admin' section for employees. Show the private chat thread between this employee and the admin only. Employee can type and send messages. Messages from both sides are shown with sender label, message text, and timestamp. Implement polling every 3 seconds to show new messages from admin in near real-time.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-my-profile-section-for-employees-display-the-employee-s-full-name-username-and-registration-date-provide-an-edit-form-to-update-full-name-and-username-password-change-functionality-old-password-new-password-confirm-new-password-should-also-be-available",
+      "title": "Implement 'My Profile' section for employees. Display the employee's full name, username, and registration date. Provide an edit form to update full name and username. Password change functionality (old password, new password, confirm new password) should also be available.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-consistent-dark-red-visual-theme-across-all-screens-background-colors-0d0000-to-1a0000-primary-accent-8b0000-dark-red-crimson-secondary-accent-cc0000-text-white-ffffff-and-light-gray-e5e5e5-use-red-gradients-on-cards-buttons-and-navigation-elements-status-badges-yellow-f59e0b-for-pending-green-10b981-for-approved-red-ef4444-for-rejected-add-smooth-hover-transitions-on-interactive-elements-all-components-should-be-responsive",
+      "title": "Apply a consistent dark red visual theme across all screens. Background colors: #0d0000 to #1a0000. Primary accent: #8B0000 (dark red/crimson). Secondary accent: #cc0000. Text: white (#ffffff) and light gray (#e5e5e5). Use red gradients on cards, buttons, and navigation elements. Status badges: yellow (#f59e0b) for Pending, green (#10b981) for Approved, red (#ef4444) for Rejected. Add smooth hover transitions on interactive elements. All components should be responsive.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-a-logo-image-for-the-rich-pay-app-a-sleek-modern-emblem-combining-a-stylized-currency-symbol-or-shield-with-dark-red-and-gold-tones-suitable-for-display-on-the-login-screen-and-dashboard-header",
+      "title": "Generate a logo image for the Rich Pay app: a sleek, modern emblem combining a stylized currency symbol or shield with dark red and gold tones, suitable for display on the login screen and dashboard header.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-add-bank-account-page-in-the-employee-dashboard-so-that-employees-can-successfully-submit-bank-accounts-the-form-submission-must-save-the-new-bank-account-to-localstorage-under-the-logged-in-employee-s-identity-not-the-admin-s-with-an-initial-status-of-pending-the-saved-account-must-immediately-appear-in-the-employee-s-my-bank-accounts-list-after-submission",
+      "title": "Fix the 'Add Bank Account' page in the Employee Dashboard so that employees can successfully submit bank accounts. The form submission must save the new bank account to localStorage under the logged-in employee's identity (not the admin's), with an initial status of 'Pending'. The saved account must immediately appear in the employee's 'My Bank Accounts' list after submission.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a Motoko backend actor that stores and manages all application data in stable variables: admin credentials (default username 'Viper@123', password 'Risktogain'), employees, bank accounts, chat messages, and invite link tokens. Expose update and query functions for all CRUD operations including: authenticate admin, authenticate employee, update admin credentials, create employee, list employees, add bank account, update bank account status (approve/reject), send chat message, get chat messages by employee, generate invite token, validate invite token.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Fix bug: employees should be able to add bank accounts. Currently only admin can add bank accounts. Ensure the 'Add Bank Account' section in the Employee Dashboard is functional and allows employees to submit their own bank accounts.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Rich Pay",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

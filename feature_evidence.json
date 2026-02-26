@@ -1,0 +1,27 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-fix-the-add-bank-account-page-in-the-employee-dashboard-so-that-employees-can-successfully-submit-bank-accounts-the-form-submission-must-save-the-new-bank-account-to-localstorage-under-the-logged-in-employee-s-identity-not-the-admin-s-with-an-initial-status-of-pending-the-saved-account-must-immediately-appear-in-the-employee-s-my-bank-accounts-list-after-submission",
+      "featureTitle": "Fix the 'Add Bank Account' page in the Employee Dashboard so that employees can successfully submit bank accounts. The form submission must save the new bank account to localStorage under the logged-in employee's identity (not the admin's), with an initial status of 'Pending'. The saved account must immediately appear in the employee's 'My Bank Accounts' list after submission.",
+      "files": [
+        "frontend/src/lib/auth.ts",
+        "frontend/src/pages/employee/AddBankAccountPage.tsx",
+        "frontend/src/pages/employee/MyBankAccountsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-18"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

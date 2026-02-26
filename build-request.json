@@ -1,0 +1,44 @@
+{
+  "kind": "build_request",
+  "title": "Fix Employee Add Bank Account Functionality",
+  "projectName": "Rich Pay",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-18",
+      "text": "Fix the 'Add Bank Account' page in the Employee Dashboard so that employees can successfully submit bank accounts. The form submission must save the new bank account to localStorage under the logged-in employee's identity (not the admin's), with an initial status of 'Pending'. The saved account must immediately appear in the employee's 'My Bank Accounts' list after submission.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "its show only admin can add bank account"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A logged-in employee can fill out the Add Bank Account form (bank name, account holder name, account number, IFSC code, account type) and submit it successfully.",
+        "Upon submission, the new bank account is saved to localStorage associated with the employee's username/identity, not the admin's.",
+        "The newly submitted account appears in the employee's 'My Bank Accounts' list with a 'Pending' status badge immediately after submission.",
+        "The admin's 'All Bank Accounts' section also shows the employee-submitted account with the employee's name.",
+        "The Add Bank Account form is not accessible to or confused with the admin's 'My Accounts' form — each operates independently.",
+        "No error is thrown or silent failure occurs when an employee submits the form."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
+    "All data continues to be persisted in localStorage — do not introduce a backend dependency for this fix.",
+    "Do not change the admin 'My Accounts' functionality — only fix the employee Add Bank Account flow."
+  ],
+  "nonGoals": [
+    "Changing the bank account approval/reject workflow.",
+    "Modifying the admin 'All Bank Accounts' page beyond ensuring it correctly displays employee-submitted accounts.",
+    "Adding new fields to the bank account form.",
+    "Any backend (Motoko) changes."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
